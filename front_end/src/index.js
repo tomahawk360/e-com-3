@@ -7,6 +7,9 @@ import {
 	RouterProvider,
 } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+import store from './store/store';
+
 import './assets/bootstrap.min.css';
 import './assets/index.css';
 
@@ -15,6 +18,7 @@ import reportWebVitals from './reportWebVitals';
 
 import HomeScreen from './screens/appRoutes/HomeScreen';
 import ProductScreen from './screens/appRoutes/ProductScreen';
+import AboutScreen from './screens/appRoutes/AboutScreen';
 import CartScreen from './screens/appRoutes/CartScreen';
 import LoginScreen from './screens/appRoutes/LoginScreen';
 import RegisterScreen from './screens/appRoutes/RegisterScreen';
@@ -24,6 +28,7 @@ const router = createBrowserRouter(
 		<Route path='/' element={<App/>}>
 			<Route index={true} path='/' element={<HomeScreen />} />
 			<Route index={true} path='/product/:id' element={<ProductScreen />} />
+			<Route index={true} path='/about' element={<AboutScreen />} />
 			<Route index={true} path='/cart' element={<CartScreen />} />
 			<Route index={true} path='/login' element={<LoginScreen />} />
 			<Route index={true} path='/register' element={<RegisterScreen />} />
@@ -34,7 +39,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
 	</React.StrictMode>
 );
 

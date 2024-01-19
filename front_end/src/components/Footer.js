@@ -11,36 +11,36 @@ const Footer = () => {
         <footer style={{backgroundColor : '#6f42c1'}}>
             <Container>
                 <Row>
-                    <Col>
-                        <h1 className='text-center py-4 footer-content'>Sobre Nosotros</h1>
+                    <Col sm={12} md={4}>
+                        <h1 className='text-center pt-4 pb-2 footer-content'>Sobre Nosotros</h1>
                         <p className='px-4 footer-content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </Col>
-                    <Col>
-                        <h1 className='text-center py-4 footer-content'>Navegacion</h1>
+                    <Col sm={12} md={4}>
+                        <h1 className='text-center pt-4 pb-2 footer-content'>Navegacion</h1>
 
                         <Container className='ps-5'>
                             <Row>
                                 <Link to='/about'>
-                                    <h5 className='px-3 footer-content'>Sobre Nosotros</h5>
+                                    <h5 className='footer-content'>Sobre Nosotros</h5>
                                 </Link>
                             </Row>
                             <Row>
                                 <Link to='/'>
-                                    <h5 className='px-3 footer-content'>Tienda</h5>
+                                    <h5 className='footer-content'>Tienda</h5>
                                 </Link>
                             </Row>
                             <Row>
                                 <Link to='/cart'>
-                                    <h5 className='px-3 footer-content'>Carro</h5>
+                                    <h5 className='footer-content'>Carro</h5>
                                 </Link>
                             </Row>
                         </Container>
                     </Col>
-                    <Col>
-                        <h1 className='text-center py-4 footer-content'>Contactanos</h1>
+                    <Col sm={12} md={4}>
+                        <h1 className='text-center pt-4 pb-2 footer-content'>Contactanos</h1>
 
                         <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-                            <Row className='ps-5'>
+                            <Row className='ps-4'>
                                 <Col>
                                     <Link to='/'>
                                         <FaFacebook />

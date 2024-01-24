@@ -43,8 +43,8 @@ const RegisterScreen = () => {
                         dispatch(login({
                             email: userAuth.user.email,
                             uid: userAuth.user.uid,
-                            displayName: userAuth.user.displayName,
-                            photoUrl: userAuth.user.photoURL,
+                            displayName: name,
+                            photoUrl: photo,
                         }))
                     )
                         .then(navigate(redirect))

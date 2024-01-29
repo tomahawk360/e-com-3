@@ -2,6 +2,7 @@ import { apiSlice } from './apiSlice.js';
 import { db } from '../firebase/firebase.js';
 
 import { getDocs, collection } from 'firebase/firestore';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 export const productsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -9,6 +10,8 @@ export const productsApiSlice = apiSlice.injectEndpoints({
             queryFn: async () => {
                 try {
                     const data = await getDocs(collection(db, 'Products'));
+
+                    const [datos, loading, err] = useCollectionData(data);
 /* 
                     let data = [];
 
@@ -16,7 +19,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
                         data.push({...product.data(), id: product.id});
                     }); */
 
-                    return { data }
+                    return { datos }
                 } catch (err) {
                     return { err }
                 }

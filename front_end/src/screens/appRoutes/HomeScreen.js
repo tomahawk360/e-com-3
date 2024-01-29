@@ -1,40 +1,31 @@
-import { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useParams, Link } from 'react-router-dom';
+import { collection } from 'firebase/firestore';
+import { useCollection } from 'react-firebase-hooks/firestore';
 
-import { useGetProductsQuery } from '../../slices/productApiSlice';
+import { db } from '../../firebase/firebase';
 
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import Product from '../../components/Product';
 
 const HomeScreen = () => {
-    const [datos, setDatos] = useState([]);
-
-    const { data, isLoading, isError } = useGetProductsQuery();
-
-    useEffect(() => {
-        if(data) {
-            data.forEach((product) => {
-                setDatos(datos => [...datos, {...product.data(), id: product.id}]);
-                console.log(datos.length);
-            });
-        }
-    }, [data]);
+    const quero = collection(db, 'Products');
+    const [snapshot, loading, error] = useCollection(quero);
 
     return (
         <>
             {
-                isLoading
+                loading
                     ? (
                         <>
                             <Loader />
                         </>
                     )
-                : isError
+                : error
                     ? (
                         <Message variant='danger'>
-                            { isError?.data?.message || isError.error }
+                            { error?.data?.message || error.error }
                         </Message>
                     )
                 : (
@@ -45,7 +36,8 @@ const HomeScreen = () => {
                             </Col>
                         </Row>
                         <Row>
-                            {datos.map((product) => {
+                            {snapshot.docs.map((product) => {
+                                console.log(product.data());
                                 return (
                                     <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
                                         <Product product={product} />
